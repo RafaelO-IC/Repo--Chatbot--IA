@@ -1,0 +1,26 @@
+
+cat <<EOF > README.md
+# Chatbot IA - EDAII
+
+Repositorio destinado al desarrollo de un sistema de **Generación Aumentada por Recuperación (RAG)** diseñado para interpretar y analizar código fuente de repositorios GitHub.
+
+## 🚀 Hoja de Ruta Técnica
+
+Este proyecto se divide en 8 módulos fundamentales para la implementación del sistema:
+
+1. **\`loader.py\`**: Carga y filtrado de scripts de Python, ignorando archivos basura.
+2. **\`splitter.py\`**: División de código manteniendo la estructura lógica de clases y funciones.
+3. **\`embeddings.py\`**: Generación de representaciones vectoriales del código.
+4. **\`vector_store.py\`**: Almacenamiento persistente en base de datos vectorial (ChromaDB).
+5. **\`retriever.py\`**: Motor de búsqueda para extraer los fragmentos de código más relevantes.
+6. **\`prompt_template.py\`**: Ingeniería de prompts para asegurar respuestas técnicas precisas.
+7. **\`chain.py\`**: Orquestación de la lógica del chatbot usando LangChain (LCEL).
+8. **\`main.py\`**: Interfaz de usuario final y bucle de ejecución del chat.
+
+## 📁 Estructura del Repositorio
+- \`/chatbot_logic\`: Carpeta que contendrá los scripts mencionados arriba.
+- \`/db\`: Directorio para la persistencia de la base de datos vectorial.
+
+---
+*Proyecto desarrollado para la asignatura de EDAII - UNAM Facultad de Ingeniería.*
+EOF
