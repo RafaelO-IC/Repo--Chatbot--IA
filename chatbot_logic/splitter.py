@@ -1,42 +1,74 @@
 # splitter.py
-# Divide archivos de código en fragmentos manejables
+# Módulo encargado de dividir archivos de código en fragmentos más pequeños para facilitar su procesamiento.
 
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.schema import Document
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_core.documents import Document
 from typing import List
 
 
-def dividir_codigo(documentos: List[Document]) -> List[Document]:
-    """
-    Divide una lista de documentos en fragmentos más pequeños (chunks)
-    manteniendo la estructura del código.
+def dividir_codigo(
+    documentos: List[Document],
+    chunk_size: int = 500,
+    chunk_overlap: int = 50
+) -> List[Document]:
 
-    :param documentos: Lista de documentos con código fuente
-    :return: Lista de documentos fragmentados
     """
+    Divide documentos de código Python en fragmentos más pequeños
+    para facilitar su procesamiento por el modelo de IA.
+
+    Parámetros:
+        documentos (List[Document]):
+            Lista de documentos que contienen el código fuente.
+
+        chunk_size (int):
+            Tamaño máximo de cada fragmento (en caracteres).
+
+        chunk_overlap (int):
+            Número de caracteres compartidos entre fragmentos.
+
+    Retorna:
+        List[Document]:
+            Lista de documentos divididos en fragmentos (chunks).
+
+    """
+        
+    # Verificar que existan documentos
+    if not documentos:
+
+        print("No se recibieron documentos.")
+        return []
 
     try:
-        # Configuración del splitter específica para Python
+
+        # Crear splitter especializado para Python
         splitter = RecursiveCharacterTextSplitter.from_language(
             language="python",
-            chunk_size=500,       # tamaño máximo del fragmento
-            chunk_overlap=50      # traslape entre fragmentos
+            chunk_size=chunk_size,
+            chunk_overlap=chunk_overlap
         )
 
         # Dividir documentos
         documentos_divididos = splitter.split_documents(documentos)
 
+        print(f"Se generaron {len(documentos_divididos)} fragmentos.")
+
         return documentos_divididos
 
     except Exception as e:
-        print("Error al dividir documentos:", e)
+
+        print("Error al dividir documentos:")
+        print(e)
+
         return []
 
 
-# ============== PRUEBA LOCAL ==============
+# ======================================
+# PRUEBA LOCAL
+# ======================================
 
 if __name__ == "__main__":
-    # Simulación de documento de código
+
+    # Código de ejemplo
     codigo_ejemplo = """
 def suma(a, b):
     return a + b
@@ -45,17 +77,32 @@ def resta(a, b):
     return a - b
 
 class Calculadora:
+
     def multiplicar(self, a, b):
         return a * b
+
+    def dividir(self, a, b):
+
+        if b == 0:
+            return "Error"
+
+        return a / b
 """
 
-    documentos = [Document(page_content=codigo_ejemplo)]
+    # Crear documento de prueba
+    documento = Document(page_content=codigo_ejemplo)
 
+    # Guardar en lista
+    documentos = [documento]
+
+    # Ejecutar función
     chunks = dividir_codigo(documentos)
 
-    print("Fragmentos generados:\n")
+    # Mostrar resultados
+    print("\n===== FRAGMENTOS GENERADOS =====\n")
 
-    for i, chunk in enumerate(chunks):
-        print(f"--- Chunk {i+1} ---")
+    for i, chunk in enumerate(chunks, start=1):
+
+        print(f"--- Chunk {i} ---")
         print(chunk.page_content)
         print()
