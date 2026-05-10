@@ -40,7 +40,7 @@ chain = (
 if __name__ == "__main__":
     pregunta = "¿Qué operaciones puede realizar la clase Calculadora que está en el código?"
     
-    print(f"\n--- CONSULTANDO A {llm.model} ---")
+    print(f"\n--- CONSULTANDO A MiniRodri {llm.model} ---")
     try:
         respuesta = chain.invoke(pregunta)
         print(f"\nRespuesta:\n{respuesta}")
