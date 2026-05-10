@@ -8,11 +8,9 @@ from retriever import buscar_fragmentos_relevantes
 from prompt_template import prompt_template
 
 # 1. Configuración de API Key
-# Usamos solo la estándar de LangChain
 os.environ["GOOGLE_API_KEY"] = "AIzaSyDArvCYNqgSH8pzbwmV1q65Lr_tSQL_Zuw"
 
 # 2. Inicialización del LLM
-# Usamos el modelo que la documentación te sugirió y que ya validamos
 llm = ChatGoogleGenerativeAI(
     model="gemini-3-flash-preview", 
     temperature=0,
@@ -40,7 +38,7 @@ chain = (
 if __name__ == "__main__":
     pregunta = "¿Qué operaciones puede realizar la clase Calculadora que está en el código?"
     
-    print(f"\n--- CONSULTANDO A MiniRodri {llm.model} ---")
+    print(f"\n--- CONSULTANDO A MiniRodri ---")
     try:
         respuesta = chain.invoke(pregunta)
         print(f"\nRespuesta:\n{respuesta}")
