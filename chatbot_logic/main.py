@@ -28,4 +28,26 @@ def iniciar_chat():
             print("Por favor, escribe una pregunta.\n")
             continue
 
-        aqui pega tu parte Nour, en esta linea
+        try:
+            print("\nMiniRodri: Procesando consulta...\n")
+
+
+            respuesta = chain.invoke(pregunta)
+
+
+            print("MiniRodri:")
+            print(respuesta)
+            print()
+
+
+        except Exception as error:
+            print("Ocurrió un error al procesar la consulta.")
+            print(f"Detalle: {error}")
+            print()
+
+
+
+
+if __name__ == "__main__":
+    iniciar_chat()
+
