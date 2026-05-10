@@ -3,6 +3,7 @@
 # Recibe una pregunta en lenguaje natural y retorna los fragmentos
 # de código más relevantes desde el almacén vectorial ChromaDB.
  
+import os
 from langchain_core.documents import Document
 from typing import List
 from vector_store import cargar_almacen_vectorial
@@ -30,6 +31,10 @@ def buscar_fragmentos_relevantes(query: str, k: int = 3, persist_directory: str 
             Lista vacía si ocurre algún error.
     """
  
+    if persist_directory is None or persist_directory == "./db":
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        persist_directory = os.path.join(base_dir, "db")
+        
     if not query or not query.strip():
         print("La consulta no puede estar vacía.")
         return []
