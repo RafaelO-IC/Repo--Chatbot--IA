@@ -4,16 +4,13 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnableLambda, RunnablePassthrough
 
 # Importaciones de tus archivos locales
-from retriever import buscar_fragmentos_relevantes
 from prompt_template import prompt_template
-
-# 1. Configuración de API Key
-os.environ["GOOGLE_API_KEY"] = "AIzaSyDArvCYNqgSH8pzbwmV1q65Lr_tSQL_Zuw"
+from retriever import buscar_fragmentos_relevantes
 
 # 2. Inicialización del LLM
 llm = ChatGoogleGenerativeAI(
-    model="gemini-3-flash-preview", 
-    temperature=0,
+    model="gemini-1.5-flash", 
+    temperature=0.1,
     client_options={"api_endpoint": "https://generativelanguage.googleapis.com"}
 )
 
