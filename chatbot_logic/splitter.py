@@ -6,12 +6,7 @@ from langchain_core.documents import Document
 from typing import List
 
 
-def dividir_codigo(
-    documentos: List[Document],
-    chunk_size: int = 500,
-    chunk_overlap: int = 50
-) -> List[Document]:
-
+def dividir_codigo(documentos: List[Document], chunk_size: int = 500, chunk_overlap: int = 50) -> List[Document]:
     """
     Divide documentos de código Python en fragmentos más pequeños
     para facilitar su procesamiento por el modelo de IA.
@@ -29,8 +24,8 @@ def dividir_codigo(
     Retorna:
         List[Document]:
             Lista de documentos divididos en fragmentos (chunks).
-
-    """
+        
+        """
         
     # Verificar que existan documentos
     if not documentos:
