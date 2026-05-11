@@ -1,0 +1,20 @@
+# Entornos virtuales (Si alguien usa un entorno aislado, no se sube)
+venv/
+env/
+.venv/
+
+# Variables de entorno (¡CLAVE! Aquí se evita que se filtren las API Keys)
+.env
+
+# Archivos compilados de Python (Basura temporal que no sirve en otros PCs)
+__pycache__/
+*.pyc
+*.pyo
+
+# Base de datos vectorial (Es muy pesada y se genera localmente, no va a GitHub)
+/db/
+/chroma_db/
+
+# Archivos del sistema operativo (Basura de Windows o Mac)
+.DS_Store
+Thumbs.db
