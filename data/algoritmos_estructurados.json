@@ -1,0 +1,44 @@
+[
+    {
+        "archivo_origen": "solucion.py",
+        "tipo": "funcion",
+        "nombre": "merge",
+        "descripcion": "Fusiona dos listas ordenadas en una sola lista ordenada.\n\nArgs:\n    left: Lista ordenada izquierda\n    right: Lista ordenada derecha\n    \nReturns:\n    Lista fusionada y ordenada",
+        "codigo_fuente": "def merge(left: list[int], right: list[int]) -> list[int]:\n    \"\"\"\n    Fusiona dos listas ordenadas en una sola lista ordenada.\n    \n    Args:\n        left: Lista ordenada izquierda\n        right: Lista ordenada derecha\n        \n    Returns:\n        Lista fusionada y ordenada\n    \"\"\"\n    # TODO: Implementar\n    pass\n    #Definimos la lista que guarda la secuencia ordenada\n    lista_ordenada = []\n    i = j = 0\n    #Mientras haya elementos en la lista izquierda y la derecha hacemos...\n    while i < len(left) and j < len(right):\n        #Si el elemento de la izuierda es menor o igual al de la derecha..\n        if left[i] <= right[j]:\n            lista_ordenada.append(left[i])\n            i += 1 #Avanzamos el indice de la lista izquierda \n        else:\n            lista_ordenada.append(right[j])\n            j += 1 #Avanzamos el índice de la lista derecha \n    #Si quedan elementos en alguna de las listas, se añaden al final \n    lista_ordenada.extend(left[i:])\n    lista_ordenada.extend(right[j:])\n\n    print(f\"Resultado de merge: {lista_ordenada}\")\n    return lista_ordenada"
+    },
+    {
+        "archivo_origen": "solucion.py",
+        "tipo": "funcion",
+        "nombre": "merge_sort",
+        "descripcion": "Ordena una lista usando Merge Sort.\n\nArgs:\n    arr: Lista a ordenar\n    \nReturns:\n    Nueva lista ordenada",
+        "codigo_fuente": "def merge_sort(arr: list[int]) -> list[int]:\n    \"\"\"\n    Ordena una lista usando Merge Sort.\n    \n    Args:\n        arr: Lista a ordenar\n        \n    Returns:\n        Nueva lista ordenada\n    \"\"\"\n    # TODO: Implementar\n    pass\n    #Caso base: si la lista tiene 0 o 1 elementos, ya está ordenada\n    if len(arr) <= 1:\n     return arr\n    \n    #Calculamos el punto medio de la lsita\n    mitad = len(arr) // 2\n\n    print(f\"Dividiendo: {arr} -> {arr[:mitad]} | {arr[mitad:]}\")\n    #Para llamar recursivamente a merge_sort para dividir entre varias mitades hasta tener el caso baae\n    left = merge_sort(arr[:mitad])\n    right = merge_sort(arr[mitad:])\n\n    return merge(left, right)"
+    },
+    {
+        "archivo_origen": "solucion.py",
+        "tipo": "funcion",
+        "nombre": "partition",
+        "descripcion": "Particiona el arreglo usando el último elemento como pivote.\n\nArgs:\n    arr: Lista a particionar\n    low: Índice inicial\n    high: Índice final (pivote)\n    \nReturns:\n    Índice final del pivote",
+        "codigo_fuente": "def partition(arr: list[int], low: int, high: int) -> int:\n    \"\"\"\n    Particiona el arreglo usando el último elemento como pivote.\n    \n    Args:\n        arr: Lista a particionar\n        low: Índice inicial\n        high: Índice final (pivote)\n        \n    Returns:\n        Índice final del pivote\n    \"\"\"\n    # TODO: Implementar\n    pass\n    pivote = arr[high]  # Elegimos el último elemento como pivote\n    i = low - 1  # Índice del elemento más pequeño (Fuera del arreglo al principio)\n\n    for j in range (low, high):\n        # Si el elemento actual es menor o igual al pivote\n        if arr[j] <= pivote:\n            i += 1  # Incrementamos el índice del elemento más pequeño\n            arr[i], arr[j] = arr[j], arr[i]  # Intercambiamos\n    #Al final, debemos colocar el pivvote, en la posición correcta.\n    arr[i + 1], arr[high] = arr[high], arr[i + 1]  # Colocamos el pivote en su posición correcta\n    return i + 1"
+    },
+    {
+        "archivo_origen": "solucion.py",
+        "tipo": "funcion",
+        "nombre": "quick_sort_inplace",
+        "descripcion": "Ordena usando Quick Sort in-place.\nModifica la lista original.\n\nArgs:\n    arr: Lista a ordenar\n    low: Índice inicial\n    high: Índice final",
+        "codigo_fuente": "def quick_sort_inplace(arr: list[int], low: int = 0, high: int = None) -> None:\n    \"\"\"\n    Ordena usando Quick Sort in-place.\n    Modifica la lista original.\n    \n    Args:\n        arr: Lista a ordenar\n        low: Índice inicial\n        high: Índice final\n    \"\"\"\n    # TODO: Implementar\n    pass\n    #Caso inicial: Si given high is None, se asigna el valor del último índice de la lista\n    if high is None:\n        high = len(arr) - 1\n    #Condición de parada: Si low es menor que high, se continúa con la partición y las llamadas recursivas\n    if low < high:\n        #Particionamos el arreglo\n        pi = partition(arr, low, high)\n        #Llamadas recursivas para las partes izquierda y derecha del pivote\n        quick_sort_inplace(arr, low, pi - 1)\n        quick_sort_inplace(arr, pi + 1, high)"
+    },
+    {
+        "archivo_origen": "solucion.py",
+        "tipo": "funcion",
+        "nombre": "quick_sort",
+        "descripcion": "Ordena usando Quick Sort (versión que retorna nueva lista).\n\nArgs:\n    arr: Lista a ordenar\n    \nReturns:\n    Nueva lista ordenada",
+        "codigo_fuente": "def quick_sort(arr: list[int]) -> list[int]:\n    \"\"\"\n    Ordena usando Quick Sort (versión que retorna nueva lista).\n    \n    Args:\n        arr: Lista a ordenar\n        \n    Returns:\n        Nueva lista ordenada\n    \"\"\"\n    # TODO: Implementar\n    pass\n\n\n    #Caso base: Si la lista tiene 0 o 1 elementos, ya está ordenada\n    if len(arr) <= 1:\n        return arr\n    else:\n        pivote = arr[len(arr) // 2]  # Elegimos el pivote (elemento del medio)\n        # Recursivamente ordenamos las partes izquierda y derecha del pivote\n        left = quick_sort([x for x in arr if x < pivote])  # Elementos menores al pivote\n        middle = [x for x in arr if x == pivote]  # Elementos iguales al pivote\n        right = quick_sort([x for x in arr if x > pivote])  # Elementos mayores al pivote\n\n        return quick_sort(left) + middle + quick_sort(right)"
+    },
+    {
+        "archivo_origen": "solucion.py",
+        "tipo": "funcion",
+        "nombre": "quick_sort_random_pivot",
+        "descripcion": "Quick Sort con selección aleatoria de pivote.\n\nArgs:\narr: Lista a ordenar\n\nReturns:\nNueva lista ordenada",
+        "codigo_fuente": "def quick_sort_random_pivot(arr: list[int]) -> list[int]:\n        \"\"\"\n        Quick Sort con selección aleatoria de pivote.\n        \n        Args:\n        arr: Lista a ordenar\n        \n        Returns:\n        Nueva lista ordenada\n        \"\"\"\n    # TODO: Implementar\n        pass\n        if len(arr) <= 1:\n            return arr\n        else:\n            pivote = random.choice(arr)  # Elegimos un pivote aleatorio\n            left = quick_sort_random_pivot([x for x in arr if x < pivote])  # Elementos menores al pivote\n            middle = [x for x in arr if x == pivote]  # Elementos iguales al pivote\n            right = quick_sort_random_pivot([x for x in arr if x > pivote])  # Elementos mayores al pivote\n            return quick_sort_random_pivot(left) + middle + quick_sort_random_pivot(right)"
+    }
+]
