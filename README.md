@@ -23,6 +23,9 @@ El proyecto está dividido en módulos fundamentales para el backend, el procesa
 10. **`setup_env.py`**: Script de automatización para la instalación de dependencias y configuración segura del entorno local.
 11. **`server.py`**: API REST construida con **FastAPI** para exponer el motor RAG y permitir la comunicación directa con interfaces gráficas (UI) de otros equipos.
 
+### Variables de entorno
+Antes de ejecutar el chatbot, copia [`.env.example`](.env.example) a `.env` y agrega tu `GOOGLE_API_KEY`. No dejes claves reales hardcodeadas en `chain.py`.
+
 ## 📂 Estructura del Repositorio
 
 ```text

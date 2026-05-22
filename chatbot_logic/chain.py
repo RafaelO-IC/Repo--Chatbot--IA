@@ -2,13 +2,22 @@ import os
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnableLambda, RunnablePassthrough
+from dotenv import load_dotenv
 
 # Importaciones de tus archivos locales
 from retriever import buscar_fragmentos_relevantes
 from prompt_template import prompt_template
 
 # 1. Configuración de API Key
-os.environ["GOOGLE_API_KEY"] = "AIzaSyDArvCYNqgSH8pzbwmV1q65Lr_tSQL_Zuw"
+load_dotenv()
+
+google_api_key = os.getenv("GOOGLE_API_KEY")
+if not google_api_key:
+    raise RuntimeError(
+        "Falta GOOGLE_API_KEY. Crea un archivo .env con tu clave de Google Gemini."
+    )
+
+os.environ["GOOGLE_API_KEY"] = google_api_key
 
 # 2. Inicialización del LLM
 llm = ChatGoogleGenerativeAI(
