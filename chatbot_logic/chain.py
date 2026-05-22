@@ -5,8 +5,8 @@ from langchain_core.runnables import RunnableLambda, RunnablePassthrough
 from dotenv import load_dotenv
 
 # Importaciones de tus archivos locales
-from retriever import buscar_fragmentos_relevantes
 from prompt_template import prompt_template
+<<<<<<< HEAD
 
 # 1. Configuración de API Key
 load_dotenv()
@@ -18,11 +18,14 @@ if not google_api_key:
     )
 
 os.environ["GOOGLE_API_KEY"] = google_api_key
+=======
+from retriever import buscar_fragmentos_relevantes
+>>>>>>> 61065101412f2d992c48f251e1b78c51097e1ae6
 
 # 2. Inicialización del LLM
 llm = ChatGoogleGenerativeAI(
-    model="gemini-3-flash-preview", 
-    temperature=0,
+    model="gemini-1.5-flash", 
+    temperature=0.1,
     client_options={"api_endpoint": "https://generativelanguage.googleapis.com"}
 )
 
